@@ -48,14 +48,40 @@ class LinkedList
         Node node = new Node();
         node.data = data;
         node.next = null;
-
-        Node n = head;
-        for(int i=0; i<index-1; i++)
+        if(index == 0)
         {
-            n = n.next;
+            insertAtStart(data);
         }
-        node.next = n.next;
-        n.next = node;
+        else
+        {
+            Node n = head;
+            for(int i=0; i<index-1; i++)
+            {
+                n = n.next;
+            }
+            node.next = n.next;
+            n.next = node;
+        }
+    }
+    public void deleteAt(int index)
+    {
+        if(index == 0)
+        {
+            head = head.next;
+        }
+        else
+        {
+            Node n = head;
+            Node n1 = null;
+            for(int i=0; i<index-1; i++)
+            {
+                n = n.next;
+            }
+            n1 = n.next;
+            n.next = n1.next;
+            System.out.println("deleted item " +n1.data);
+            n1 = null;
+        }
     }
 }
 class Demo
@@ -71,7 +97,11 @@ class Demo
         list.insertAtStart(3);
         list.insertAtStart(8);
         list.insertAt(2,55);
+        list.insertAt(0,67);
 
+        list.show();
+        System.out.println(".......................................");
+        list.deleteAt(3);
         list.show();
     }
 }
